@@ -1,0 +1,208 @@
+\documentclass[dvips,mnsc]{informs3}
+% [citeauthoryear]
+
+\OneAndAHalfSpacedXI % current default line spacing
+%%\OneAndAHalfSpacedXII
+%%\DoubleSpacedXII
+%%\DoubleSpacedXI
+
+% If hyperref is used, dvi-to-ps driver of choice must be declared as
+%   an additional option to the \documentstyle. For example
+%\documentclass[dvips,mnsc]{informs3}      % if dvips is used
+%\documentclass[dvipsone,mnsc]{informs3}   % if dvipsone is used, etc.
+
+% Private macros here (check that there is no clash with the style)
+
+% --------------------
+
+% \usepackage[table]{xcolor}
+% \usepackage{xcolor}
+% \usepackage[utf8x]{inputenc}
+% \usepackage{listings}
+% \usepackage{amsmath,amssymb}
+% \usepackage[noend]{algpseudocode}
+% \usepackage{stmaryrd}
+% \usepackage{listings}
+% \usepackage{algorithm}
+% \usepackage{array}
+% \usepackage{textcomp}
+% \usepackage{pifont}
+% \usepackage{bbding}
+% \usepackage{comment}
+% \usepackage{graphicx}
+% \usepackage{paper}
+% \usepackage[svgpath=figures/]{svg}
+% \usepackage[labelfont=bf]{caption}
+% \captionsetup[table]{skip=5pt}
+
+% \usepackage{academicons}
+% \usepackage{cite}
+% \usepackage[hidelinks,
+% plainpages=false,
+% pdftitle={
+%   The Lead Time Syndrome
+% },
+% pdfauthor={Manuel Schneckenreither and Stefan Haeussler},
+% pdfsubject={  The Lead Time Syndrome},
+% pdfkeywords={production planning, order release, lead time syndrome, formalisation, detection,
+%   operations research},
+% ]{hyperref}
+
+% \usepackage{url}
+
+\newcommand\SH[2][r]{\ifx t#1 \textcolor{green!50!black}{[\textbf{SH:} #2]}
+  \else \begin{center}\textcolor{green!50!black}{\textbf{SH:} #2} \end{center} \fi}
+
+\newcommand\MS[2][r]{\ifx t#1 \textcolor{blue}{[\textbf{MS:} #2]}
+  \else \begin{center}\textcolor{blue}{\textbf{MS:} #2} \end{center} \fi}
+
+\newcolumntype{x}[1]{>{\centering\arraybackslash\hspace{0pt}}p{#1}}
+% --------------------
+
+% Natbib setup for author-year style
+\usepackage{natbib}
+ \bibpunct[, ]{(}{)}{,}{a}{}{,}%
+ \def\bibfont{\small}%
+ \def\bibsep{\smallskipamount}%
+ \def\bibhang{24pt}%
+ \def\newblock{\ }%
+ \def\BIBand{and}%
+
+%% Setup of theorem styles. Outcomment only one.
+%% Preferred default is the first option.
+\TheoremsNumberedThrough     % Preferred (Theorem 1, Lemma 1, Theorem 2)
+%\TheoremsNumberedByChapter  % (Theorem 1.1, Lema 1.1, Theorem 1.2)
+\ECRepeatTheorems
+
+%% Setup of the equation numbering system. Outcomment only one.
+%% Preferred default is the first option.
+\EquationsNumberedThrough    % Default: (1), (2), ...
+%\EquationsNumberedBySection % (1.1), (1.2), ...
+
+% For new submissions, leave this number blank.
+% For revisions, input the manuscript number assigned by the on-line
+% system along with a suffix ".Rx" where x is the revision number.
+\MANUSCRIPTNO{}
+
+%%%%%%%%%%%%%%%%
+\begin{document}
+%%%%%%%%%%%%%%%%
+
+% Outcomment only when entries are known. Otherwise leave as is and
+%   default values will be used.
+%\setcounter{page}{1}
+%\VOLUME{00}%
+%\NO{0}%
+%\MONTH{Xxxxx}% (month or a similar seasonal id)
+%\YEAR{0000}% e.g., 2005
+%\FIRSTPAGE{000}%
+%\LASTPAGE{000}%
+%\SHORTYEAR{00}% shortened year (two-digit)
+%\ISSUE{0000} %
+%\LONGFIRSTPAGE{0001} %
+%\DOI{10.1287/xxxx.0000.0000}%
+
+% Author's names for the running heads
+% Sample depending on the number of authors;
+% \RUNAUTHOR{Jones}
+% \RUNAUTHOR{Jones and Wilson}
+% \RUNAUTHOR{Jones, Miller, and Wilson}
+% \RUNAUTHOR{Jones et al.} % for four or more authors
+% Enter authors following the given pattern:
+\RUNAUTHOR{Schneckenreither and Haeussler}
+%\RUNAUTHOR{}
+
+% Title or shortened title suitable for running heads. Sample:
+% \RUNTITLE{Bundling Information Goods of Decreasing Value}
+% Enter the (shortened) title:
+\RUNTITLE{The Lead Time Syndrome}
+
+% Full title. Sample:
+% \TITLE{Bundling Information Goods of Decreasing Value}
+% Enter the full title:
+\TITLE{A Formalisation of the Lead Time Syndrome}
+
+% Block of authors and their affiliations starts here:
+% NOTE: Authors with same affiliation, if the order of authors allows,
+%   should be entered in ONE field, separated by a comma.
+%   \EMAIL field can be repeated if more than one author
+\ARTICLEAUTHORS{%
+  \AUTHOR{Manuel Schneckenreither% \orcidID{0000-0002-4812-4665}
+  }
+  \AFF{Department of Information Systems, Production and Logistics Management, University of Innsbruck, Austria
+  \EMAIL{manuel.schneckenreither@uibk.ac.at}} %, \URL{}}
+
+  \AUTHOR{Stefan Haeussler % \orcidID{0000-0003-2589-1367}
+  }
+  \AFF{Department of Information Systems, Production and Logistics Management, University of Innsbruck, Austria
+  \EMAIL{stefan.haeussler@uibk.ac.at}}
+} % end of the block
+
+\ABSTRACT{%
+  TODO
+% Enter your abstract
+}%
+
+% Sample
+%\KEYWORDS{deterministic inventory theory; infinite linear programming duality;
+%  existence of optimal policies; semi-Markov decision process; cyclic schedule}
+
+% Fill in data. If unknown, outcomment the field
+\KEYWORDS{production planning, order release, lead time syndrome, formalisation, operations
+  research}
+\HISTORY{ % This paper was first submitted on April 12, 1922 and has been with the authors for 83 years
+  % for 65 revisions.
+}
+
+\maketitle
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Samples of sectioning (and labeling) in MNSC
+% NOTE: (1) \section and \subsection do NOT end with a period
+%       (2) \subsubsection and lower need end punctuation
+%       (3) capitalization is as shown (title style).
+%
+%\section{Introduction.}\label{intro} %%1.
+%\subsection{Duality and the Classical EOQ Problem.}\label{class-EOQ} %% 1.1.
+%\subsection{Outline.}\label{outline1} %% 1.2.
+%\subsubsection{Cyclic Schedules for the General Deterministic SMDP.}
+%  \label{cyclic-schedules} %% 1.2.1
+%\section{Problem Description.}\label{problemdescription} %% 2.
+
+% Text of your paper here
+
+\section{Introduction}
+\label{sec:introduction}
+
+
+\section{The Lead Time Syndrome}
+\label{sec:The_Lead_Time_Syndrome}
+
+
+Zumindest durschnittlich gleichbleibende Freigabemenge bei über die Zeit steigender EDT (oder
+eventuell die Warteschlangenlänge [von Stage 1]).
+
+
+\begin{definition}
+  The \emph{Lead Time Syndrome} is defined as
+\end{definition}
+
+% *Informelle Definition LTS_+*
+
+
+\section{Experimental Evidence}
+\label{sec:Experimental_Evidence}
+
+
+\section{Conclusion}
+\label{sec:Conclusion}
+
+
+\bibliography{references}
+\bibliographystyle{plainnat}
+
+\end{document}
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
