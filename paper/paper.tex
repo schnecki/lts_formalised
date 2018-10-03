@@ -197,9 +197,14 @@ not needed to infer this systematic releasing misbehavior.
 
 % \MS{name clash: LEAD TIME Syndrome with no LEAD TIME?}
 Despite this theoretical observation the name lead time syndrome may be under question. However, as
-in cases as given in the proof above the lead time follows the order release decisions and in
-practice order releases are usually determined by the lead time (or flow time) the wording can be
-considered as appropriate.
+in cases like the one given in the proof above the lead time follows the order release decisions and
+in practice order releases are usually determined by the lead time (or flow time), the wording can
+be considered as appropriate.
+%
+Nonetheless, our method is based on this observation. First we do not consider the lead time as
+input variable to the method, then we do not suppose an interconnection between the \WIP{}-level
+with the release decision procedure, and finally we do not restrict our method on any particular
+order release pattern.
 
 
 \section{The Lead Time Syndrome}
@@ -224,7 +229,9 @@ order pool into the production system by an external mechanism.
 %
 Usually the orders are released based on the observed (average) flow time of the last finished
 orders. However, our method does not presuppose such an interdependence for detecting the lead time
-syndrome as it works directly on (parts of) the \WIP{}-level of the system.
+syndrome as it works directly on (parts of) the \WIP{}-level of the system. Thus our approach is
+also able to observe systematic releasing misbehavior, referred to as \LTS{}, which do not consider
+the lead time as depended variable for the release decisions.
 %
 % Intuitively the method works as
 % follows. By measuring the change of the average \WIP{}-level over time and comparing this to the
