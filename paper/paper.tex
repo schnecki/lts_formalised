@@ -1,4 +1,4 @@
-\documentclass[dvips,mnsc]{informs3}
+\documentclass[mnsc]{informs3}
 % [citeauthoryear]
 
 \OneAndAHalfSpacedXI % current default line spacing
@@ -14,10 +14,9 @@
 % Private macros here (check that there is no clash with the style)
 
 % --------------------
-
+\usepackage[utf8x]{inputenc}
 % \usepackage[table]{xcolor}
 % \usepackage{xcolor}
-% \usepackage[utf8x]{inputenc}
 % \usepackage{listings}
 % \usepackage{amsmath,amssymb}
 % \usepackage[noend]{algpseudocode}
@@ -49,6 +48,7 @@
 % ]{hyperref}
 
 % \usepackage{url}
+
 
 \newcommand\SH[2][r]{\ifx t#1 \textcolor{green!50!black}{[\textbf{SH:} #2]}
   \else \begin{center}\textcolor{green!50!black}{\textbf{SH:} #2} \end{center} \fi}
@@ -174,31 +174,89 @@
 \section{Introduction}
 \label{sec:introduction}
 
-Lead Time Syndrome (LTS)
+Introduce abbreviations:
+\begin{itemize}
+\item Lead Time Syndrome (\LTS{})
+\item Work-in-process (\WIP{})
+\end{itemize}
+
+
+Related literature \MS[t]{Cite!} argues that the lead time syndrome can only occur (i) if a lead
+time is set dynamically and nonreciprocal according to the current \WIP{}-level and (ii) the order
+releases monotonically depend on this lead time. In a practical point of view this assumption is
+correct, however theoretically the interconnection between \WIP{}-level and number of releases is
+not needed to infer this systematic releasing misbehavior.
+
+\begin{proof}{Proof}
+  Consider a manufacturer with constant demand and an order release mechanism which strictly
+  increases the number of orders to be released on every release decision, e.g.~by 1 order. Clearly
+  the release decision does neither depend on the flow time nor lead time. However, considered over
+  time this leads to a monotonically increasing \WIP{}-level which again leads to a monotonically
+  increasing lead time.\qed
+\end{proof}
+
+% \MS{name clash: LEAD TIME Syndrome with no LEAD TIME?}
+Despite this theoretical observation the name lead time syndrome may be under question. However, as
+in cases as given in the proof above the lead time follows the order release decisions and in
+practice order releases are usually determined by the lead time (or flow time) the wording can be
+considered as appropriate.
 
 
 \section{The Lead Time Syndrome}
 \label{sec:The_Lead_Time_Syndrome}
 
-In this section we present a formalisation of the \LTS{}. It is straightforward to implement the
-presented methods to establish a \LTS{} detection system. We follow the notation established
-by~\cite{selccuk2013adaptive}.
+In this section we present a formalisation of the \LTS{}.
+%
+\MS[t]{TODO} The section is split into two
+parts. First we will present the method for single-stage manufacturers, before considering more
+stages.
+%
+It is straightforward to implement the presented methods to establish a \LTS{} detection system, see
+Section~\ref{sec:Experimental_Evidence}. We follow the notation established
+by~\cite{selccuk2013adaptive} to ease readability.
 
 \subsection{Single-Stage Manufacturing System}
 \label{subsec:Single-Stage_Manufacturing_System}
 
 
-Consider a single product one-stage manufacturing system that releases orders from the order pool
-into the production system by an external mechanism. We denote the demand rate at time
-$t \geqslant 0$ as $\dr{t}$, and the demand for the item during the period defined by timestamps
-$t_{2} \geqslant t_{1} \geqslant 0$ as $\di{t_{1}}{t_{2}}$. Similarly we denote the order release
-rate as $\rr{t}$ and the releases within a period as $\ri{t_{1}}{t_{2}}$. Usually
+Consider a single product one-stage flow-shop manufacturing system that releases orders from the
+order pool into the production system by an external mechanism.
+%
+Usually the orders are released based on the observed (average) flow time of the last finished
+orders. However, our method does not presuppose such an interdependence for detecting the lead time
+syndrome as it works directly on (parts of) the \WIP{}-level of the system.
+%
+% Intuitively the method works as
+% follows. By measuring the change of the average \WIP{}-level over time and comparing this to the
+% average releases into the system it can infer the desired property.
+%
+We denote the demand rate at time $t \geqslant 0$ as $\dr{t}$, and the demand for the item during
+the period defined by timestamps $t_{2} \geqslant t_{1} \geqslant 0$ as $\di{t_{1}}{t_{2}}$.
+Similarly we denote the order release rate as $\rr{t}$ and the releases within a period as
+$\ri{t_{1}}{t_{2}}$. Each work-station $i$ is equipped with a queue $\q_{i}$ on which released
+orders are appended according to a given routing and from there handed over to the work-station if
+only if the work-station is empty and the order is at the head of the queue. Thus we allow parallel
+processing of unique orders with non-shared queues in the setup. In case of shared queues in this
+single item setup the work-station shall be considered as a single work-station. The size of a queue
+$\size{\q_{i}} \geqslant 0$ is given by the number of orders within the queue.
+
 
 \begin{definition}
 
-  The overall queue length
+  The queue size $\size{\Q_{i}}$ of stage $i$ is defined as
+  $\size{\Q_{i}} = \sum_{i=1}^{n} \size{\q_{i}}$, where $n$ is the number of work-stations of stage
+  $i$. Note that in this subsection we set $i=1$.
 
 \end{definition}
+
+
+As the demand may vary over time, e.g.~in a seasonal pattern or simply by some variance, it must be
+considered as time factor in formulation of the lead time syndrome. To clarify, consider a seasonal
+demand. It can clearly not be considered a lead time syndrome if the releases just depict the
+demand. However
+
+and therefore
+specifies the
 
 
 Zumindest durschnittlich gleichbleibende Freigabemenge bei über die Zeit steigender EDT (oder
