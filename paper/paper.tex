@@ -258,12 +258,25 @@ $\size{\q_{i}} \geqslant 0$ is given by the number of orders within the queue.
 
 
 As the demand may vary over time, e.g.~in a seasonal pattern or simply by some variance, it must be
-considered as time factor in formulation of the lead time syndrome. To clarify, consider a seasonal
-demand. It can clearly not be considered a lead time syndrome if the releases just depict the
-demand. However
+considered as time factor in the formulation of the lead time syndrome. To clarify, consider a
+seasonal demand. It can clearly not be considered a lead time syndrome if the releases just depict
+the demand.
 
-and therefore
-specifies the
+Let the periodic demand be given by $\di{t}{t+1} = \dmean(\frac{t+t+1}{2}) + \epsilon$,
+where $\dmean$ is a function which maps any given time $t \geqslant 0$ to the expected mean demand
+at time $t$ and $\epsilon$ is drawn from a random variable $\X$ with standard deviation $\sigma$.
+
+\begin{example}
+  In case of a constant demand, $\dmean$ maps to a constant value, whereas in a seasonal demand $f$
+  might be the sine-function. In most cases we expect the random variable to be drawn from the
+  standard distribution: $\X \sim \N{0}{\sigma^{2}}$.
+\end{example}
+
+
+- je mehr variation im demand desto länger die zeit
+
+
+and therefore specifies the
 
 
 Zumindest durschnittlich gleichbleibende Freigabemenge bei über die Zeit steigender EDT (oder
