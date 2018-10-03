@@ -30,7 +30,7 @@
 % \usepackage{bbding}
 % \usepackage{comment}
 % \usepackage{graphicx}
-% \usepackage{paper}
+\usepackage{paper}
 % \usepackage[svgpath=figures/]{svg}
 % \usepackage[labelfont=bf]{caption}
 % \captionsetup[table]{skip=5pt}
@@ -174,9 +174,31 @@
 \section{Introduction}
 \label{sec:introduction}
 
+Lead Time Syndrome (LTS)
+
 
 \section{The Lead Time Syndrome}
 \label{sec:The_Lead_Time_Syndrome}
+
+In this section we present a formalisation of the \LTS{}. It is straightforward to implement the
+presented methods to establish a \LTS{} detection system. We follow the notation established
+by~\cite{selccuk2013adaptive}.
+
+\subsection{Single-Stage Manufacturing System}
+\label{subsec:Single-Stage_Manufacturing_System}
+
+
+Consider a single product one-stage manufacturing system that releases orders from the order pool
+into the production system by an external mechanism. We denote the demand rate at time
+$t \geqslant 0$ as $\dr{t}$, and the demand for the item during the period defined by timestamps
+$t_{2} \geqslant t_{1} \geqslant 0$ as $\di{t_{1}}{t_{2}}$. Similarly we denote the order release
+rate as $\rr{t}$ and the releases within a period as $\ri{t_{1}}{t_{2}}$. Usually
+
+\begin{definition}
+
+  The overall queue length
+
+\end{definition}
 
 
 Zumindest durschnittlich gleichbleibende Freigabemenge bei über die Zeit steigender EDT (oder
@@ -188,6 +210,13 @@ eventuell die Warteschlangenlänge [von Stage 1]).
 \end{definition}
 
 % *Informelle Definition LTS_+*
+
+
+\subsection{Multi-Stage Manufacturing System}
+\label{subsec:Multi-Stage_Manufacturing_System}
+
+
+We now lift the established metric to multi-stage manufacturing systems.
 
 
 \section{Experimental Evidence}
@@ -202,6 +231,8 @@ eventuell die Warteschlangenlänge [von Stage 1]).
 \bibliographystyle{plainnat}
 
 \end{document}
+
+% --------------------
 %%% Local Variables:
 %%% mode: latex
 %%% TeX-master: t
