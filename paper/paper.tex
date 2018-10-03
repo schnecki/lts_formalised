@@ -237,21 +237,21 @@ the lead time as depended variable for the release decisions.
 % follows. By measuring the change of the average \WIP{}-level over time and comparing this to the
 % average releases into the system it can infer the desired property.
 %
-We denote the demand rate at time $t \geqslant 0$ as $\dr{t}$, and the demand for the item during
-the period defined by timestamps $t_{2} \geqslant t_{1} \geqslant 0$ as $\di{t_{1}}{t_{2}}$.
-Similarly we denote the order release rate as $\rr{t}$ and the releases within a period as
-$\ri{t_{1}}{t_{2}}$. Each work-station $i$ is equipped with a queue $\q_{i}$ on which released
-orders are appended according to a given routing and from there handed over to the work-station if
-only if the work-station is empty and the order is at the head of the queue. Thus we allow parallel
-processing of unique orders with non-shared queues in the setup. In case of shared queues in this
-single item setup the work-station shall be considered as a single work-station. The size of a queue
-$\size{\q_{i}} \geqslant 0$ is given by the number of orders within the queue.
+We denote the demand rate at time $t \geqslant 0$ as $\dr{t}$ \MS[t]{rates needed?}, and the demand
+for the item during the period defined by timestamps $t_{2} \geqslant t_{1} \geqslant 0$ as
+$\di{t_{1}}{t_{2}}$. Similarly we denote the order release rate as $\rr{t}$ and the releases within
+a period as $\ri{t_{1}}{t_{2}}$. Each work-station $i$ is equipped with a queue $\q_{i}$ on which
+released orders are appended according to a given routing and from there handed over to the
+work-station if only if the work-station is empty and the order is at the head of the queue. Thus we
+allow parallel processing of unique orders with non-shared queues in the setup. In case of shared
+queues in this single item setup the work-station shall be considered as a single work-station. The
+size of a queue $\size{\q_{i}} \geqslant 0$ is given by the number of orders within the queue.
 
 
 \begin{definition}
 
-  The queue size $\size{\Q_{i}}$ of stage $i$ is defined as
-  $\size{\Q_{i}} = \sum_{i=1}^{n} \size{\q_{i}}$, where $n$ is the number of work-stations of stage
+  The \emph{queue size} $\size{\Q_{i}}$ of stage $i$ is defined as
+  $\size{\Q_{i}} \defsym \sum_{i=1}^{n} \size{\q_{i}}$, where $n$ is the number of work-stations of stage
   $i$. Note that in this subsection we set $i=1$.
 
 \end{definition}
@@ -262,21 +262,56 @@ considered as time factor in the formulation of the lead time syndrome. To clari
 seasonal demand. It can clearly not be considered a lead time syndrome if the releases just depict
 the demand.
 
-Let the periodic demand be given by $\di{t}{t+1} = \dmean(\frac{t+t+1}{2}) + \epsilon$,
+\MS{maybe use continuous representation below?}
+
+Let the periodic demand be given by $\di{t}{t+1} = \max(0,\dmean(\frac{t+t+1}{2}) + \epsilon)$,
 where $\dmean$ is a function which maps any given time $t \geqslant 0$ to the expected mean demand
-at time $t$ and $\epsilon$ is drawn from a random variable $\X$ with standard deviation $\sigma$.
+at time $t$ and $\epsilon$ is drawn from a random variable $\X$ with mean $0$ and standard deviation
+$\sigma$.
 
 \begin{example}
-  In case of a constant demand, $\dmean$ maps to a constant value, whereas in a seasonal demand $f$
-  might be the sine-function. In most cases we expect the random variable to be drawn from the
-  standard distribution: $\X \sim \N{0}{\sigma^{2}}$.
+  In case of a constant demand, $\dmean$ maps to a constant value, whereas for a seasonal demand $f$
+  could be the sine-function.
+  % In most cases we expect the random variable to be drawn from the
+  % standard distribution $\X \sim \N{0}{\sigma^{2}}$ and in case of a discrete demand space applying
+  % the nearest integer function.
 \end{example}
+
+% \MS{needed at all? we got the variance. But the max operator is used?}
+% \begin{definition}
+%   We define the \emph{standardised demand} $\dl{t}$ with time $t \geqslant 0$ as $\dl{t} \defsym
+%   \di{t}{t+1} - \dmean(\frac{2t+1}{2})$. That is we subtract the mean from the demand to
+%   be able to investigate the deviations solely.
+%   % \begin{align*}
+%   %   \dl{t} \defsym
+%   %   \begin{cases}
+%   %     1 + \epsilon & \text{iff }\dmean(\frac{2t+1}{2}) = 0\\
+%   %     \dmean^{-1}(\frac{2t+1}{2}) \cdot \dmean(\frac{2t+1}{2}) + \epsilon & \text{otherwise}
+%   %   \end{cases}
+%   %   \tpkt
+%   % \end{align*}
+%   % Note that $\dmean(\cdot)$ is a scalar value and thus the inverse $\dmean^{-1}(\cdot)$ exists
+%   % unless the mean demand is $0$.
+% \end{definition}
+% The standardised demand allows us to extract useful information from the deviations of the
+
+We use the standard deviation $\sigma$ of the random variable $\X$ as measure for estimating the
+time span being considered in our model. Recall that the standard deviation measures the expected
+deviation of the mean in orders for one period.
+%
+Futhermore,... \MS[t]{seasonal stuff}
+%
+
+\begin{definition}
+  We define the time span $\ts$ of the manufacturing system under investigation as
+  \begin{align*}
+    \ts \defsym \MS[t]{\text{seasonal stuff todo}} + \z \cdot 2 \sigma \tcom
+  \end{align*}
+  where $\z$ is a parameter.
+\end{definition}
 
 
 - je mehr variation im demand desto länger die zeit
-
-
-and therefore specifies the
 
 
 Zumindest durschnittlich gleichbleibende Freigabemenge bei über die Zeit steigender EDT (oder
