@@ -260,7 +260,7 @@ size of a queue $\size{\q_{i}} \geqslant 0$ is given by the number of orders wit
 
   The \emph{queue size} $\size{\Q_{i}}$ of stage $i$ is defined as
   $\size{\Q_{i}} \defsym \sum_{i=1}^{n} \size{\q_{i}}$, where $n$ is the number of work-stations of stage
-  $i$. Note that in this subsection we set $i=1$.
+  $i$. Note that for this subsection $i=1$.
 
 \end{definition}
 
@@ -334,14 +334,17 @@ Futhermore,... \MS[t]{seasonal stuff}
 
 
 \begin{definition}
-  We define the \emph{time span} $\ts(p)$ in period $p$ of the manufacturing system
+  We define the \emph{time span considered} $\tsc(p)$ in period $p$ of the manufacturing system
   % with the periodised demand $\dper{\cdot}$
   under investigation as
   \begin{align*}
-    \ts(p) \defsym 1 + \ceil[\Bigg]{\frac{ \zs \cdot 2 \sigma}{\frac{1}{p} \cdot \sum_{i=0}^{p}{f(i)}}} +
-    \MS[t]{\text{seasonal stuff todo}} \tcom
+    \tsc(p) \defsym 1 + \ceil[\Bigg]{\frac{ \zs \cdot 2 \sigma}{\frac{1}{p} \cdot \sum_{i=0}^{p}{f(i)}}} +
+    \MS[t]{\text{seasonal stuff}} \tcom
   \end{align*}
-  where $\zs$ can be used to select the confidence interval being considered.
+  where $\zs$ can be used to select the confidence interval being considered. Thus under the
+  assumption of a normal distribution and according to the $68$--$95$--$99.7$ rule, $68.3\%$,
+  $95.5\%$, or $99.7\%$ of the demand deviation are used by setting $\zs$ to $1$, $2$,
+  and $3$ respectively.
   % This
   % definition assumes a symmetric probability distribution of $\X$ in the second term. However,  due
   % to the ceiling function
@@ -351,7 +354,7 @@ Futhermore,... \MS[t]{seasonal stuff}
 \end{definition}
 
 
-The reduce the impact of outliers we average the actual releases over $ts(p)$ values.
+The reduce the impact of outliers we average the actual releases over $\tsc{p}$ values.
 
 
 - je mehr variation im demand desto länger die zeit
