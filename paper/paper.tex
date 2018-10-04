@@ -181,8 +181,12 @@
 Introduce abbreviations:
 \begin{itemize}
 \item Lead Time Syndrome (\LTS{})
-\item Work-in-process (\WIP{})
+\item Work-in-process (\WIP{})\\
 \end{itemize}
+
+
+Definition LTS~\citep{selccuk2013adaptive}: dynamic quoting of lead times $\rightarrow$ lumpy releases $\rightarrow$ larger
+WIP $\rightarrow$ longer lead times $\rightarrow$ more releases\\
 
 
 Related literature \MS[t]{Cite!} argues that the lead time syndrome can only occur (i) if a lead
@@ -337,7 +341,7 @@ Futhermore,... \MS[t]{seasonal stuff}
     \ts(p) \defsym 1 + \ceil[\Bigg]{\frac{ \zs \cdot 2 \sigma}{\frac{1}{p} \cdot \sum_{i=0}^{p}{f(i)}}} +
     \MS[t]{\text{seasonal stuff todo}} \tcom
   \end{align*}
-  where $\zs$ can be used to scale the confidence interval being considered.
+  where $\zs$ can be used to select the confidence interval being considered.
   % This
   % definition assumes a symmetric probability distribution of $\X$ in the second term. However,  due
   % to the ceiling function
@@ -347,7 +351,7 @@ Futhermore,... \MS[t]{seasonal stuff}
 \end{definition}
 
 
-The reduce the impact of outliers we average the actual releases over $k$ values.
+The reduce the impact of outliers we average the actual releases over $ts(p)$ values.
 
 
 - je mehr variation im demand desto länger die zeit
