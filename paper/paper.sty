@@ -7,6 +7,7 @@
 \newcommand*{\defsym}{\mathrel{:=}}
 \newcommand*{\tpkt}{\rlap{$\;$.}}
 \newcommand*{\tcom}{\rlap{$\;$,}}
+\newcommand*{\Nat}{\mathbb{N}}
 
 % Operators
 \newcommand*{\size}[1]{\lvert{#1}\rvert}
@@ -15,22 +16,22 @@
 % Definitions
 \newcommand*{\dr}[1]{{d}(#1)}
 \newcommand*{\di}[2]{{d}(#1,#2)}
-\newcommand*{\dl}[1]{{d_{\sigma}}(#1)}
+\newcommand*{\dper}[1]{{d_{\Nat}}(#1)}
+
+\newcommand*{\ddev}[1]{{d_{\sigma}}(#1)}
 \newcommand*{\X}{X}
 \newcommand*{\N}[2]{\mathcal{N}(#1,#2)}
 \newcommand*{\dmean}{{f}}
 
 
-\newcommand*{\rr}[1]{{\lambda}(#1)}
-\newcommand*{\ri}[2]{{\lambda}(#1,#2)}
+\newcommand*{\rr}[1]{{\lambda} (#1)}
+\newcommand*{\ri}[2]{{\lambda} (#1,#2)}
 
 \newcommand*{\q}{\mathsf{q}}
 \newcommand*{\Q}{\mathsf{Q}}
 
-\newcommand*{\sl}{\mathsf{sl}}
-
-\newcommand*{\ts}{\mathsf{ts}}
-\newcommand*{\z}{z}
+\DeclareMathOperator*{\ts}{\mathsf{ts}}
+\newcommand*{\zs}{z_{\sigma}}
 
 
 % \DeclareMathOperator*{\E}{\mathbb{E}}
@@ -44,7 +45,6 @@
 
 % % numbers
 % \newcommand*{\field}[1]{\mathbb{#1}}%
-% \newcommand*{\N}{\field{N}}
 
 
 % --------------------

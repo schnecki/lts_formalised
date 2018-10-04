@@ -264,26 +264,40 @@ the demand.
 
 \MS{maybe use continuous representation below?}
 
-Let the periodic demand be given by $\di{t}{t+1} = \max(0,\dmean(\frac{t+t+1}{2}) + \epsilon)$,
-where $\dmean$ is a function which maps any given time $t \geqslant 0$ to the expected mean demand
-at time $t$ and $\epsilon$ is drawn from a random variable $\X$ with mean $0$ and standard deviation
-$\sigma$.
+\begin{definition}
+  The \emph{periodised demand} $\dper{p}$ for any period $p \in \Nat$ is given by
+  $\dper{p} = \max(0,\dmean(\frac{p+p+1}{2}) + \epsilon) = \di{p}{p+1}$, where $\dmean$ is a
+  function which maps any given period to the expected mean demand at this period and $\epsilon$ is
+  drawn from a random variable $\X$ with mean $0$ and standard deviation $\sigma$. Note that $f$
+  must not necessarily be continuous.
+  % Note that the periodised demand is only defined over natural numbers, which describe the current
+  % period.
+\end{definition}
+
 
 \begin{example}
-  In case of a constant demand, $\dmean$ maps to a constant value, whereas for a seasonal demand $f$
-  could be the sine-function.
+  In case of a constant demand, $\dmean$ maps to a constant value and $\epsilon = 0$, whereas for a
+  seasonal demand $f$ in a continuous space one may use the sine-function and
+  $\X \sim \N{0}{\sigma^{2}}$.
+  %
+  \MS[t]{maybe refer to inventory control, as there $\N{0}{\cdot}$ is also used?}
+
   % In most cases we expect the random variable to be drawn from the
   % standard distribution $\X \sim \N{0}{\sigma^{2}}$ and in case of a discrete demand space applying
   % the nearest integer function.
 \end{example}
 
+In practise the available demand data is used to infer the function $\dmean$ and the value for
+$\sigma$. This could be done using regression and statistical analyses. Therefore, in hereafter
+these values are expected to be known.
+
 % \MS{needed at all? we got the variance. But the max operator is used?}
 % \begin{definition}
-%   We define the \emph{standardised demand} $\dl{t}$ with time $t \geqslant 0$ as $\dl{t} \defsym
-%   \di{t}{t+1} - \dmean(\frac{2t+1}{2})$. That is we subtract the mean from the demand to
-%   be able to investigate the deviations solely.
+%   We define the \emph{mean deviation demand} $\ddev{t}$ with time $t \geqslant 0$ as
+%   $\ddev{t} \defsym \di{t}{t+1} - \dmean(\frac{2t+1}{2})$. That is we subtract the mean from the
+%   demand to be able to investigate the deviations solely.
 %   % \begin{align*}
-%   %   \dl{t} \defsym
+%   %   \ddev{t} \defsym
 %   %   \begin{cases}
 %   %     1 + \epsilon & \text{iff }\dmean(\frac{2t+1}{2}) = 0\\
 %   %     \dmean^{-1}(\frac{2t+1}{2}) \cdot \dmean(\frac{2t+1}{2}) + \epsilon & \text{otherwise}
@@ -295,20 +309,37 @@ $\sigma$.
 % \end{definition}
 % The standardised demand allows us to extract useful information from the deviations of the
 
-We use the standard deviation $\sigma$ of the random variable $\X$ as measure for estimating the
-time span being considered in our model. Recall that the standard deviation measures the expected
-deviation of the mean in orders for one period.
+The higher the standard deviation of the demand, the more likely it is to find high fluctuations in
+the release pattern. Thus, the scaled deviations in the demand specify a natural lower-bound of
+release decisions to consider in the analysis of the \LTS{}.
+%
+Hence, we use the standard deviation $\sigma$ of the random variable $\X$ in relation to the mean
+demand as measure for determining the time span being considered. Recall that the standard deviation
+measures the expected deviation of the mean in orders.
+%
+%
+% Thus, $2 \sigma$ specify the (minimum) expected deviation of the demand and thus also the release
+% decisions from one period to the next.
 %
 Futhermore,... \MS[t]{seasonal stuff}
 %
 
+
 \begin{definition}
-  We define the time span $\ts$ of the manufacturing system under investigation as
+  We define the \emph{time span} $\ts(p)$ in period $p$ of the manufacturing system
+  % with the periodised demand $\dper{\cdot}$
+  under investigation as
   \begin{align*}
-    \ts \defsym \MS[t]{\text{seasonal stuff todo}} + \z \cdot 2 \sigma \tcom
+    \ts(p) \defsym 1 + \frac{ \zs \cdot 2 \sigma}{\frac{1}{p} \cdot \sum_{i=0}^{p}{f(i)}} +
+    \MS[t]{\text{seasonal stuff todo}} \tcom
   \end{align*}
-  where $\z$ is a parameter.
+  where $\zs$ is a scaling parameter for specifying the confidence interval being considered. This
+  definition assumes a symmetric probability distribution of $\X$ in the second term. For asymmetric
+  probability distributions, the definition can be easily extended to integrate
 \end{definition}
+
+
+The reduce the impact of outliers we average the actual releases over $k$ values.
 
 
 - je mehr variation im demand desto länger die zeit
