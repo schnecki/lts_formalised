@@ -29,6 +29,10 @@
 % \usepackage{bbding}
 % \usepackage{comment}
 % \usepackage{graphicx}
+
+\usepackage{mathtools}
+\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
+
 \usepackage{paper}
 % \usepackage[svgpath=figures/]{svg}
 % \usepackage[labelfont=bf]{caption}
@@ -330,12 +334,16 @@ Futhermore,... \MS[t]{seasonal stuff}
   % with the periodised demand $\dper{\cdot}$
   under investigation as
   \begin{align*}
-    \ts(p) \defsym 1 + \frac{ \zs \cdot 2 \sigma}{\frac{1}{p} \cdot \sum_{i=0}^{p}{f(i)}} +
+    \ts(p) \defsym 1 + \ceil[\Bigg]{\frac{ \zs \cdot 2 \sigma}{\frac{1}{p} \cdot \sum_{i=0}^{p}{f(i)}}} +
     \MS[t]{\text{seasonal stuff todo}} \tcom
   \end{align*}
-  where $\zs$ is a scaling parameter for specifying the confidence interval being considered. This
-  definition assumes a symmetric probability distribution of $\X$ in the second term. For asymmetric
-  probability distributions, the definition can be easily extended to integrate
+  where $\zs$ can be used to scale the confidence interval being considered.
+  % This
+  % definition assumes a symmetric probability distribution of $\X$ in the second term. However,  due
+  % to the ceiling function
+  % For asymmetric
+  % probability distributions, the definition can be easily extended to integrate
+
 \end{definition}
 
 
