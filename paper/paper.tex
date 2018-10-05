@@ -193,14 +193,22 @@ Related literature \MS[t]{Cite!} argues that the lead time syndrome can only occ
 time is set dynamically and nonreciprocal according to the current \WIP{}-level and (ii) the order
 releases monotonically depend on this lead time. In a practical point of view this assumption is
 correct, however theoretically the interconnection between \WIP{}-level and number of releases is
-not needed to infer this systematic releasing misbehavior.
+not needed to infer this systematic releasing misbehavior. The dynamic quoting of the lead time can
+rather be seen as origin and perpetuating factor for the \LTS{} in practical situations.
+
+\begin{lemma}
+  The interconnection between \WIP{}-level (and also lead time for that sake), and the release
+  pattern is not necessary to observe the systematic releasing misbehavior called lead time
+  syndrome.
+\end{lemma}
 
 \begin{proof}{Proof}
   Consider a manufacturer with constant demand and an order release mechanism which strictly
   increases the number of orders to be released on every release decision, e.g.~by 1 order. Clearly
-  the release decision does neither depend on the flow time nor lead time. However, considered over
-  time this leads to a monotonically increasing \WIP{}-level which again leads to a monotonically
-  increasing lead time.\qed
+  the release decision does neither depend on the flow time nor the lead time. However, considered
+  over time this leads to a monotonically increasing \WIP{}-level which again leads to a
+  monotonically increasing lead time. This cycle of larger \WIP{}, longer lead time, and increasing
+  amount of released orders is commonly known as lead time syndrome. \qed
 \end{proof}
 
 % \MS{name clash: LEAD TIME Syndrome with no LEAD TIME?}
@@ -319,18 +327,31 @@ these values are expected to be known.
 
 \begin{lemma}
 
-  % stddev(rel1) > stddev(rel0) -> stddev(dem1) > stddev(dem0)
-  It is sensible to increase the standard deviation in the release pattern if the standard deviation
-  in the demand increases.
+
+  % stddev(dem1) > stddev(dem0) -> stddev(rel1) > stddev(rel0)
+
+
+  Let $p \in \Nat$ be the periods. Suppose, the deviations of the mean demand are drawn by $\X_{0}$,
+  $\X_{1}$ and the corresponding release pattern follow the random variables $\Lambda_{0}$ and
+  $\Lambda_{1}$ respectively.
+  % and the standard deviation $\stddev$ over a set of discrete
+  Then, if $\stddev(\X_{1}) > \stddev(\X_{0})$  then $\stddev(\Lambda_{1}) > \stddev(\Lambda_{0})$
+  is sensible.
+  %
+  Informally this means that for higher standard deviation in the demand a higher standard deviation
+  in the release pattern is sensible.
+
+  % It is sensible to increase the standard deviation in the release pattern if the standard
+  % deviation in the demand increases.
+
 
 \end{lemma}
 
 \begin{proof}{Proof by induction on the size of the deviations.}
   Wlog assume sufficient capacity for the single-stage manufacturer.
-  % Base: stddev(rel1) > 0 -> stddev(dem1) > 0
-  In case of a constant
-  demand pattern, the only sensible release pattern is to release s.t. an over the time (nearly)
-  constant output in the magnitude of the demand is achieved.
+  % Base: stddev(dem1) > 0 -> stddev(rel1) > 0
+  In case of a constant demand pattern, the only sensible release pattern is to release s.t. an over
+  the time (nearly) constant output in the magnitude of the demand is achieved.
   % or the maximum achievable constant throughput.
   Any other release pattern will increase either back-orders or finished goods inventory and thus
   costs. Similarly the costs increase once variability in the demand is introduced, as possible
@@ -363,14 +384,17 @@ these values are expected to be known.
 \end{proof}
 
 
-Put differently, for higher standard deviation in the demand higher fluctuations in the release
-pattern are sensible. Thus, the scaled deviations in the demand specify a natural lower-bound of
-release decisions to consider in the analysis of the \LTS{}.
+% The above lemma thus specifies that for higher standard deviation in the demand higher fluctuations
+% in the release pattern are sensible.
+Thus, the scaled deviations in the demand specify a natural
+lower-bound of release decisions to consider in the analysis of the \LTS{}.
 %
 Hence, we use the standard deviation $\sigma$ of the random variable $\X$ in relation to the mean
 demand as measure for determining the time span of the release decisions and \WIP{}-levels being
-considered in the analysis. Recall that the standard deviation measures the expected deviation of
-the mean in orders.
+considered in the analysis.
+%
+% Recall that the standard deviation measures the expected deviation of
+% the mean in orders.
 %
 %
 % Thus, $2 \sigma$ specify the (minimum) expected deviation of the demand and thus also the release
@@ -381,17 +405,17 @@ Futhermore,... \MS[t]{seasonal stuff}
 
 
 \begin{definition}
-  We define the \emph{time span considered} $\tsc(p)$ in period $p$ of the manufacturing system
+  We define the \emph{time span considered} $\tsc{p}$ in period $p$ of the manufacturing system
   % with the periodised demand $\dper{\cdot}$
   under investigation as
   \begin{align*}
-    \tsc(p) \defsym 1 + \ceil[\Bigg]{\frac{ \zs \cdot 2 \sigma}{\frac{1}{p} \cdot \sum_{i=0}^{p}{f(i)}}} +
+    \tsc{p} \defsym 1 + \ceil[\Bigg]{\frac{ \zs \cdot 2 \sigma}{\frac{1}{p} \cdot \sum_{i=0}^{p}{f(i)}}} +
     \MS[t]{\text{seasonal stuff}} \tcom
   \end{align*}
-  where $\zs$ can be used to select the confidence interval being considered. Thus under the
-  assumption of a normal distribution and according to the $68$--$95$--$99.7$ rule, $68.3\%$,
-  $95.5\%$, or $99.7\%$ of the demand deviation are used by setting $\zs$ to $1$, $2$,
-  and $3$ respectively.
+  where $\zs$ can be used to select the confidence interval of the underlying distribution. Thus
+  under the assumption of a normal distribution and according to the $68$--$95$--$99.7$ rule,
+  $68.3\%$, $95.5\%$, or $99.7\%$ of the demand deviation are used by setting $\zs$ to $1$, $2$, and
+  $3$ respectively.
   % This
   % definition assumes a symmetric probability distribution of $\X$ in the second term. However,  due
   % to the ceiling function

@@ -9,14 +9,17 @@
 \newcommand*{\tcom}{\rlap{$\;$,}}
 \newcommand*{\Nat}{\mathbb{N}}
 
+
 % Operators
 \newcommand*{\size}[1]{\lvert{#1}\rvert}
-% \DeclareMathOperator*{\max}{\mathrm{max}}
+\newcommand*{\stddev}{\mathrm{stddev}}
 
 % Definitions
 \newcommand*{\dr}[1]{{d}(#1)}
 \newcommand*{\di}[2]{{d}(#1,#2)}
-\newcommand*{\dper}[1]{{d_{\Nat}}(#1)}
+
+\newcommand*{\dperonly}{{d_{\Nat}}}
+\newcommand*{\dper}[1]{\dperonly(#1)}
 
 \newcommand*{\ddev}[1]{{d_{\sigma}}(#1)}
 \newcommand*{\X}{X}
@@ -25,12 +28,13 @@
 
 
 \newcommand*{\rr}[1]{{\lambda} (#1)}
-\newcommand*{\ri}[2]{{\lambda} (#1,#2)}
+\newcommand*{\rionly}{{\lambda}}
+\newcommand*{\ri}[2]{{\rionly} (#1,#2)}
 
 \newcommand*{\q}{\mathsf{q}}
 \newcommand*{\Q}{\mathsf{Q}}
 
-\DeclareMathOperator*{\tsc}{\mathsf{tsc}}
+\newcommand*{\tsc}[1]{\mathsf{tsc}(#1)}
 \newcommand*{\zs}{z_{\sigma}}
 
 
