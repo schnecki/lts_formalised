@@ -317,13 +317,60 @@ these values are expected to be known.
 % \end{definition}
 % The standardised demand allows us to extract useful information from the deviations of the
 
-The higher the standard deviation of the demand, the more likely it is to find high fluctuations in
-the release pattern. Thus, the scaled deviations in the demand specify a natural lower-bound of
+\begin{lemma}
+
+  % stddev(rel1) > stddev(rel0) -> stddev(dem1) > stddev(dem0)
+  It is sensible to increase the standard deviation in the release pattern if the standard deviation
+  in the demand increases.
+
+\end{lemma}
+
+\begin{proof}{Proof by induction on the size of the deviations.}
+  Wlog assume sufficient capacity for the single-stage manufacturer.
+  % Base: stddev(rel1) > 0 -> stddev(dem1) > 0
+  In case of a constant
+  demand pattern, the only sensible release pattern is to release s.t. an over the time (nearly)
+  constant output in the magnitude of the demand is achieved.
+  % or the maximum achievable constant throughput.
+  Any other release pattern will increase either back-orders or finished goods inventory and thus
+  costs. Similarly the costs increase once variability in the demand is introduced, as possible
+  unforeseen fluctuations in the demand require either to increase the stock level or accept
+  back-order costs.
+  %
+  % IH: stddev(dem1) > stddev(dem0) -> stddev(rel1) > stddev(rel0)
+  In case the demand deviation increases by any magnitude greater $0$, chances for the demand
+  quantities further away from the mean are increased with probability $p>0$. Thus the planner has
+  to decide whether to release additional quantity to be able to serve the demand which is more
+  likely with probability $p$. Clearly, this increases chances for either inventory costs or
+  back-order costs according to the decision of the planner and compared to the previous situation.
+  \qed
+
+  % Demand with higher stddev
+  % ----
+  % ---
+  % --
+  % ---
+  % ----
+
+  % Demand with lower stddev
+  % ---
+  % ---
+  % ---
+  % ---
+  % ---
+
+
+\end{proof}
+
+
+Put differently, for higher standard deviation in the demand higher fluctuations in the release
+pattern are sensible. Thus, the scaled deviations in the demand specify a natural lower-bound of
 release decisions to consider in the analysis of the \LTS{}.
 %
 Hence, we use the standard deviation $\sigma$ of the random variable $\X$ in relation to the mean
-demand as measure for determining the time span being considered. Recall that the standard deviation
-measures the expected deviation of the mean in orders.
+demand as measure for determining the time span of the release decisions and \WIP{}-levels being
+considered in the analysis. Recall that the standard deviation measures the expected deviation of
+the mean in orders.
 %
 %
 % Thus, $2 \sigma$ specify the (minimum) expected deviation of the demand and thus also the release
