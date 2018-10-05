@@ -197,8 +197,8 @@ not needed to infer this systematic releasing misbehavior. The dynamic quoting o
 rather be seen as origin and perpetuating factor for the \LTS{} in practical situations.
 
 \begin{lemma}
-  The interconnection between \WIP{}-level (and also lead time for that sake), and the release
-  pattern is not necessary to observe the systematic releasing misbehavior called lead time
+  The interconnection between \WIP{}-level (and thus also the lead time for that sake), and the
+  release pattern is not necessary to observe the systematic releasing misbehavior called lead time
   syndrome.
 \end{lemma}
 
@@ -386,12 +386,12 @@ these values are expected to be known.
 
 % The above lemma thus specifies that for higher standard deviation in the demand higher fluctuations
 % in the release pattern are sensible.
-Thus, the scaled deviations in the demand specify a natural
+Thus, the deviations of the demand in relation to the mean specify a proportional % natural
 lower-bound of release decisions to consider in the analysis of the \LTS{}.
 %
-Hence, we use the standard deviation $\sigma$ of the random variable $\X$ in relation to the mean
-demand as measure for determining the time span of the release decisions and \WIP{}-levels being
-considered in the analysis.
+Hence, we use the standard deviation $\sigma$ of the random variable $\X$ related to the mean demand
+as measure for determining the time span of the release decisions and \WIP{}-levels being considered
+in the analysis.
 %
 % Recall that the standard deviation measures the expected deviation of
 % the mean in orders.
@@ -400,16 +400,69 @@ considered in the analysis.
 % Thus, $2 \sigma$ specify the (minimum) expected deviation of the demand and thus also the release
 % decisions from one period to the next.
 %
+
+
+\MS{2 definitions. 1. How many periods to average using $\sigma$. 2. How many periods to look back
+  for the time: season length. }
+
+\begin{definition}
+  We define the \emph{\mddname{}} $\mdd{p}$ of period $p$ and the manufacturing system
+  % with the periodised demand $\dper{\cdot}$
+  under investigation as
+  \begin{align*}
+    \mdd{p} \defsym 1 +
+    \frac{ \zs \cdot 2 \sigma}{\frac{1}{p} \cdot \sum_{i=1}^{p}{f(i)}}  +
+    \frac{\max \{|f(i)-f(i+1)|\ \mid \ \forall 0 \leqslant i \leqslant p \}}{\frac{1}{p} \cdot \sum_{i=1}^{p}{f(i)}}
+  \end{align*}
+  where $\zs$ can be used to select the confidence interval of the underlying distribution. Thus
+  under the assumption of a normal distribution and according to the $68$--$95$--$99.7$ rule,
+  $68.3\%$, $95.5\%$, or $99.7\%$ of the demand deviation are used by setting $\zs$ to $1$, $2$, and
+  $3$ respectively.
+  % This
+  % definition assumes a symmetric probability distribution of $\X$ in the second term. However,  due
+  % to the ceiling function
+  % For asymmetric
+  % probability distributions, the definition can be easily extended to integrate
+\end{definition}
+
+\begin{definition}
+  The \emph{\avgrqname} $\avgrq{p}$ of period $p$ is defined as
+  \begin{align*}
+    \avgrq{p} \defsym \frac{1}{K} \cdot \sum_{i=p-K}^{p-1}{ \ri{i}{i+1} }\tcom
+  \end{align*}
+
+  where $K=\min(p,\ceil{\mdd{p}})$.
+\end{definition}
+
+\MS{TODO: same for \WIP{}}
+
+
+Intuitively the \mddname{} is a measure of variability and shift of the mean in the demand stream
+with respect to the average mean demand and equipped with a lower-bound of $1$. We use the
+\mddname{} to average the number of releases and \WIP{}-levels to be able to investigate their
+\textsl{\mddname{}}-average slopes over time.
+
+
+% Maybe here an example?
+
+However,
+
+This time factor
+
+
 Futhermore,... \MS[t]{seasonal stuff}
 %
 
 
 \begin{definition}
-  We define the \emph{time span considered} $\tsc{p}$ in period $p$ of the manufacturing system
+  We define the \emph{time span} $\ts{p}$ in period $p$ of the manufacturing system
   % with the periodised demand $\dper{\cdot}$
   under investigation as
   \begin{align*}
-    \tsc{p} \defsym 1 + \ceil[\Bigg]{\frac{ \zs \cdot 2 \sigma}{\frac{1}{p} \cdot \sum_{i=0}^{p}{f(i)}}} +
+    \ts{p} \defsym 1 + % \ceil[\Bigg]{
+    \frac{ \zs \cdot 2 \sigma}{\frac{1}{p} \cdot \sum_{i=1}^{p}{f(i)}}
+    % }
+    +
     \MS[t]{\text{seasonal stuff}} \tcom
   \end{align*}
   where $\zs$ can be used to select the confidence interval of the underlying distribution. Thus
@@ -421,11 +474,10 @@ Futhermore,... \MS[t]{seasonal stuff}
   % to the ceiling function
   % For asymmetric
   % probability distributions, the definition can be easily extended to integrate
-
 \end{definition}
 
 
-The reduce the impact of outliers we average the actual releases over $\tsc{p}$ values.
+To reduce the impact of outliers we average the actual releases over $\ts{p}$ values.
 
 
 - je mehr variation im demand desto länger die zeit
