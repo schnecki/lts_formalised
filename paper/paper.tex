@@ -131,15 +131,20 @@
 %   should be entered in ONE field, separated by a comma.
 %   \EMAIL field can be repeated if more than one author
 \ARTICLEAUTHORS{%
-  \AUTHOR{Manuel Schneckenreither% \orcidID{0000-0002-4812-4665}
+  \AUTHOR{Manuel Schneckenreither%
+    % \orcidID{0000-0002-4812-4665}
+    % , Stefan Haeussler
+    % \orcidID{0000-0003-2589-1367}
   }
   \AFF{Department of Information Systems, Production and Logistics Management, University of Innsbruck, Austria
-  \EMAIL{manuel.schneckenreither@uibk.ac.at}} %, \URL{}}
+    \EMAIL{manuel.schneckenreither@uibk.ac.at}
+    \EMAIL{stefan.haeussler@uibk.ac.at}
+  } %, \URL{}}
 
-  \AUTHOR{Stefan Haeussler % \orcidID{0000-0003-2589-1367}
-  }
-  \AFF{Department of Information Systems, Production and Logistics Management, University of Innsbruck, Austria
-  \EMAIL{stefan.haeussler@uibk.ac.at}}
+  % \AUTHOR{Stefan Haeussler % \orcidID{0000-0003-2589-1367}
+  % }
+  % \AFF{Department of Information Systems, Production and Logistics Management, University of Innsbruck, Austria
+  % \EMAIL{stefan.haeussler@uibk.ac.at}}
 } % end of the block
 
 \ABSTRACT{%
@@ -304,8 +309,10 @@ the demand.
 \end{example}
 
 In practise the available demand data is used to infer the function $\dmean$ and the value for
-$\sigma$. This could be done using regression and statistical analyses. Therefore, in hereafter
-these values are expected to be known.
+$\sigma$. This is done using regression and other statistical analyses. Therefore, hereafter the
+function $\dmean$ and the value for $\sigma$ % these values
+are expected to be known. In the following we will use these values to infer important time
+information for the analysis of the \LTS{}.
 
 % \MS{needed at all? we got the variance. But the max operator is used?}
 % \begin{definition}
@@ -331,9 +338,9 @@ these values are expected to be known.
   % stddev(dem1) > stddev(dem0) -> stddev(rel1) > stddev(rel0)
 
 
-  Let $p \in \Nat$ be the periods. Suppose, the deviations of the mean demand are drawn by $\X_{0}$,
-  $\X_{1}$ and the corresponding release pattern follow the random variables $\Lambda_{0}$ and
-  $\Lambda_{1}$ respectively.
+  Let $p \in \Nat$ be the periods. Consider two demand streams where the deviations of the mean
+  demand are drawn by $\X_{0}$, $\X_{1}$ and the corresponding release pattern follow the random
+  variables $\Lambda_{0}$ and $\Lambda_{1}$ respectively.
   % and the standard deviation $\stddev$ over a set of discrete
   Then, if $\stddev(\X_{1}) > \stddev(\X_{0})$  then $\stddev(\Lambda_{1}) > \stddev(\Lambda_{0})$
   is sensible.
@@ -414,6 +421,8 @@ in the analysis.
     \frac{ \zs \cdot 2 \sigma}{\frac{1}{p} \cdot \sum_{i=1}^{p}{f(i)}}  +
     \frac{\max \{|f(i)-f(i+1)|\ \mid \ \forall 0 \leqslant i \leqslant p \}}{\frac{1}{p} \cdot \sum_{i=1}^{p}{f(i)}}
   \end{align*}
+  \MS{maybe use moving average for mean. Imagine a demand jump from bottom to top and vice versa! should
+    be equal? }
   where $\zs$ can be used to select the confidence interval of the underlying distribution. Thus
   under the assumption of a normal distribution and according to the $68$--$95$--$99.7$ rule,
   $68.3\%$, $95.5\%$, or $99.7\%$ of the demand deviation are used by setting $\zs$ to $1$, $2$, and
@@ -437,17 +446,15 @@ in the analysis.
 \MS{TODO: same for \WIP{}}
 
 
-Intuitively the \mddname{} is a measure of variability and shift of the mean in the demand stream
-with respect to the average mean demand and equipped with a lower-bound of $1$. We use the
+Intuitively the \mddname{} is a measure of variability and maximum leap of the mean in the demand
+stream with respect to the average mean demand and equipped with a lower-bound of $1$. We use the
 \mddname{} to average the number of releases and \WIP{}-levels to be able to investigate their
-\textsl{\mddname{}}-average slopes over time.
+\textsl{\mddname{}}-average slopes.
 
 
 % Maybe here an example?
-
-However,
-
-This time factor
+We compare these slopes to the slopes from the past. The amount of time which is looked into the
+past is defined by the defined by the length of the season.
 
 
 Futhermore,... \MS[t]{seasonal stuff}
